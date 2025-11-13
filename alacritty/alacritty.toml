@@ -1,0 +1,26 @@
+[general]
+import = ["campbell.toml"]
+[env]
+TERM = "xterm-256color"
+
+[window]
+opacity = 0.9
+decorations = "Full"
+decorations_theme_variant = "Dark"
+startup_mode = "Maximized"
+
+[font]
+normal.family = "CodeNewRoman Nerd Font"
+bold.family = "CodeNewRoman Nerd Font Bold"
+italic.family = "CodeNewRoman Nerd Font Italic"
+bold_italic.family = "CodeNewRoman Nerd Font Italic"
+size = 12
+
+[terminal]
+osc52 = "CopyPaste"
+
+[mouse]
+hide_when_typing = true
+
+[cursor]
+style = { shape = "Beam", blinking = "On" }
