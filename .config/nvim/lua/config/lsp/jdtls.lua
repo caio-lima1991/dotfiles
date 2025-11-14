@@ -52,7 +52,7 @@ local function get_jdtls_config()
       },
     },
 
-    on_attach = function(bufnr)
+    on_attach = function(client, bufnr)
       vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr, desc = "Code Action" })
       jdtls.setup_dap({ hotcodereplace = "auto" })
     end,
