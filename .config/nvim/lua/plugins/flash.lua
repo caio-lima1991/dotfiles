@@ -13,7 +13,7 @@ return {
     },
     {
       "S",
-      mode = { "n", "x", "o" },
+      mode = { "n", "o", "x" },
       function()
         require("flash").treesitter()
       end,
@@ -42,6 +42,19 @@ return {
         require("flash").toggle()
       end,
       desc = "Toggle Flash Search",
+    },
+    {
+      "<c-space>",
+      mode = { "n", "o", "x" },
+      function()
+        require("flash").treesitter({
+          actions = {
+            ["<c-space>"] = "next",
+            ["<BS>"] = "prev",
+          },
+        })
+      end,
+      desc = "Treesitter Incremental Selection",
     },
   },
 }

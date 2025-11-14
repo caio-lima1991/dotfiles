@@ -1,6 +1,7 @@
 local jdtls = require("jdtls")
 
 local function get_jdtls_config()
+  local mason = vim.fn.stdpath("data") .. "/mason/packages/"
   local jdtls_path = vim.fn.stdpath("data") .. "/mason/packages/jdtls/"
   local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
   local workspace_dir = vim.fn.expand("~/.jdtls-workspace/") .. project_name
@@ -19,15 +20,19 @@ local function get_jdtls_config()
     "-Dlog.level=ALL",
     "-Xmx1G",
     "--add-modules=ALL-SYSTEM",
-    "--add-opens", "java.base/java.util=ALL-UNNAMED",
-    "--add-opens", "java.base/java.lang=ALL-UNNAMED",
+    "--add-opens",
+    "java.base/java.util=ALL-UNNAMED",
+    "--add-opens",
+    "java.base/java.lang=ALL-UNNAMED",
 
     "-javaagent:" .. lombok_path,
-    
-    "-jar", vim.fn.glob(jdtls_path .. "plugins/org.eclipse.equinox.launcher_*.jar"),
-    
-    "-configuration", jdtls_path .. "config_" .. (os_name == "Windows_NT" and "win" or os_name == "Linux" and "linux" or "mac"),
-    
+
+    "-jar",
+    vim.fn.glob(jdtls_path .. "plugins/org.eclipse.equinox.launcher_*.jar"),
+
+    "-configuration",
+    jdtls_path .. "config_" .. (os_name == "Windows_NT" and "win" or os_name == "Linux" and "linux" or "mac"),
+
     "-data",
     workspace_dir,
   }
@@ -47,10 +52,17 @@ local function get_jdtls_config()
       },
     },
 
-    on_attach = function(client, bufnr)
+    on_attach = function(bufnr)
       vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr, desc = "Code Action" })
       jdtls.setup_dap({ hotcodereplace = "auto" })
     end,
+  }
+
+  local bundles = {
+    vim.fn.glob(mason .. "/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar", 1),
+  }
+  config["init_options"] = {
+    bundles = bundles,
   }
 
   return config

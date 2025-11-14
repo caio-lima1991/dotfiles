@@ -1,4 +1,5 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
     "git",
@@ -9,11 +10,10 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   })
 end
+
 vim.opt.rtp:prepend(lazypath)
 vim.opt.undofile = true
-vim.opt.termguicolors = true
 vim.opt.fillchars = { eob = " " }
-vim.g.snacks_animate = false
 
 require("lazy").setup({ { import = "plugins" } }, {
   checker = {
