@@ -1,0 +1,21 @@
+(defcfg
+  log-layer-changes no
+)
+
+(defsrc
+  q w e  
+  caps a s d h j k l
+  x c)
+  
+(defalias
+  fn-key (layer-toggle fn-layer))
+
+(deflayer qwerty
+  q w e
+  @fn-key a s d h j k l
+  x c)
+
+(deflayer fn-layer
+  prev next pp
+  _ mute vold volu left down up right
+  caps menu)
