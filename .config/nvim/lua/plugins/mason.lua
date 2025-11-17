@@ -25,6 +25,7 @@ return {
         "eslint",
         "jdtls",
         "angularls",
+        "marksman",
       },
       automatic_enable = {
         exclude = {
