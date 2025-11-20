@@ -1,11 +1,12 @@
 return { -- Autocompletion
   "saghen/blink.cmp",
-  event = "VimEnter",
+  event = "InsertEnter",
   version = "1.*",
   dependencies = {
     {
       "L3MON4D3/LuaSnip",
       version = "2.*",
+      event = "InsertEnter",
       build = (function()
         if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
           return

@@ -166,7 +166,8 @@ return {
 
   {
     "rcarriga/nvim-dap-ui",
-    dependencies = { "nvim-neotest/nvim-nio" },
+    dependencies = { "nvim-neotest/nvim-nio", "mfussenegger/nvim-dap" },
+    event = "VimEnter",
     keys = {
       {
         "<leader>du",
@@ -227,6 +228,7 @@ return {
   },
   {
     "theHamsta/nvim-dap-virtual-text",
+    dependencies = { "mfussenegger/nvim-dap" },
     opts = {},
   },
 }
