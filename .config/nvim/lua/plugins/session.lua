@@ -1,6 +1,6 @@
 return {
   "rmagatti/auto-session",
-  lazy = false,
+  event = "VimEnter",
   opts = {
     suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
     auto_save = false,

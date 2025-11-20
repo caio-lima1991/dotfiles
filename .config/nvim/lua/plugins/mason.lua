@@ -36,6 +36,7 @@ return {
     dependencies = {
       {
         "williamboman/mason.nvim",
+        cmd = "Mason",
         opts = {
           ui = {
             icons = {

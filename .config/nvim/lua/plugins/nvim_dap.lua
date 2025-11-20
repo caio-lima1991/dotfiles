@@ -142,16 +142,6 @@ return {
     },
     config = function()
       vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
-      -- Setup signs if you have LazyVim.config.icons.dap
-      if LazyVim and LazyVim.config and LazyVim.config.icons and LazyVim.config.icons.dap then
-        for name, sign in pairs(LazyVim.config.icons.dap) do
-          sign = type(sign) == "table" and sign or { sign }
-          vim.fn.sign_define(
-            "Dap" .. name,
-            { text = sign[1], texthl = sign[2] or "DiagnosticInfo", linehl = sign[3], numhl = sign[3] }
-          )
-        end
-      end
 
       -- Setup dap config by VsCode launch.json file
       local vscode = require("dap.ext.vscode")
@@ -230,7 +220,7 @@ return {
             },
           },
           position = "bottom",
-          size = 30,
+          size = 20,
         },
       },
     },
