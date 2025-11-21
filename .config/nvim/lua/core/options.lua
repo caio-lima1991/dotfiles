@@ -34,3 +34,7 @@ opt.splitright = true -- split vertical window to the right
 opt.splitbelow = true -- split horizontal window to the bottom
 
 vim.o.winborder = "rounded"
+
+vim.api.nvim_create_user_command("Nt", function()
+  vim.cmd("edit ~/vim_notes/my_notes.md")
+end, {})
