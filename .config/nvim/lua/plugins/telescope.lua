@@ -22,7 +22,10 @@ return { -- Fuzzy Finder (files, lsp, etc)
       },
     })
 
-    pcall(require("telescope").load_extension, "fzf")
+    -- Only load fzf extension if available
+    if vim.fn.executable("make") == 1 then
+      pcall(require("telescope").load_extension, "fzf")
+    end
     pcall(require("telescope").load_extension, "ui-select")
 
     local builtin = require("telescope.builtin")

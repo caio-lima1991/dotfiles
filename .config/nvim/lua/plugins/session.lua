@@ -1,9 +1,10 @@
 return {
   "rmagatti/auto-session",
-  event = "VimEnter",
+  lazy = false,
+  priority = 50,
   opts = {
     suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
-    auto_save = false,
+    auto_save = true,
   },
   keys = {
     { "<leader>qr", "<cmd>AutoSession search<CR>", desc = "Session search" },

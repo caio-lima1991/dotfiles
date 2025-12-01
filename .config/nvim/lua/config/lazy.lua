@@ -23,4 +23,29 @@ require("lazy").setup({ { import = "plugins" } }, {
   change_detection = {
     notify = false,
   },
+  performance = {
+    cache = {
+      enabled = true,
+      path = vim.fn.stdpath("cache") .. "/lazy/cache",
+      ttl = 3600 * 24 * 5, -- keep cache for 5 days
+    },
+    rtp = {
+      disabled_plugins = {
+        "gzip",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+        "netrwPlugin",
+        "matchit",
+        "matchparen",
+        "osc52",
+        "rplugin",
+        "shada",
+        "spellfile",
+        "editorconfig",
+      },
+    },
+    reset_packpath = true,
+  },
 })
