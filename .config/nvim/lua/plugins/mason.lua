@@ -3,6 +3,7 @@ return {
     "williamboman/mason.nvim",
     "mfussenegger/nvim-dap",
     "jay-babu/mason-nvim-dap.nvim",
+    event = "VeryLazy",
     dependencies = "mason.nvim",
     cmd = { "DapInstall", "DapUninstall" },
     opts = {
@@ -37,6 +38,7 @@ return {
     dependencies = {
       {
         "williamboman/mason.nvim",
+        event = "VeryLazy",
         cmd = "Mason",
         opts = {
           ui = {

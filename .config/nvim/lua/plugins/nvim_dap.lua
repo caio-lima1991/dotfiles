@@ -17,6 +17,7 @@ end
 return {
   {
     "mfussenegger/nvim-dap",
+    event = "VeryLazy",
     desc = "Debugging support. Requires language specific adapters to be configured.",
     dependencies = { "rcarriga/nvim-dap-ui", "nvim-neotest/nvim-nio" },
     keys = {
@@ -167,7 +168,7 @@ return {
   {
     "rcarriga/nvim-dap-ui",
     dependencies = { "nvim-neotest/nvim-nio", "mfussenegger/nvim-dap" },
-    event = "VimEnter",
+    event = "VeryLazy",
     keys = {
       {
         "<leader>du",
@@ -228,6 +229,7 @@ return {
   },
   {
     "theHamsta/nvim-dap-virtual-text",
+    event = "VeryLazy",
     dependencies = { "mfussenegger/nvim-dap" },
     opts = {},
   },
