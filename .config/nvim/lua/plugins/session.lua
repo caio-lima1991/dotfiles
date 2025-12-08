@@ -1,13 +1,35 @@
 return {
-  "rmagatti/auto-session",
-  lazy = false,
-  priority = 50,
-  opts = {
-    suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
-    auto_save = false,
-  },
+  "folke/persistence.nvim",
+  event = "BufReadPre",
+  opts = {},
   keys = {
-    { "<leader>qr", "<cmd>AutoSession search<CR>", desc = "Session search" },
-    { "<leader>qs", "<cmd>AutoSession save<CR>", desc = "Save session" },
+    {
+      "<leader>qs",
+      function()
+        require("persistence").load()
+      end,
+      desc = "Restore Session",
+    },
+    {
+      "<leader>qS",
+      function()
+        require("persistence").select()
+      end,
+      desc = "Select Session",
+    },
+    {
+      "<leader>ql",
+      function()
+        require("persistence").load({ last = true })
+      end,
+      desc = "Restore Last Session",
+    },
+    {
+      "<leader>qd",
+      function()
+        require("persistence").stop()
+      end,
+      desc = "Don't Save Current Session",
+    },
   },
 }
