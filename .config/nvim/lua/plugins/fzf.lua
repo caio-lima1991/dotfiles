@@ -114,6 +114,7 @@ return {
         },
         files = {
           cwd_prompt = false,
+          cmd = "fd --type f --hidden --exclude .git",
           actions = {
             ["alt-i"] = { actions.toggle_ignore },
             ["alt-h"] = { actions.toggle_hidden },
@@ -171,7 +172,7 @@ return {
 
       -- Original LazyVim Picker Keymaps: Replaced LazyVim.pick(...)
       { "<leader>,", "<cmd>FzfLua buffers sort_mru=true sort_lastused=true<cr>", desc = "Switch Buffer" },
-      { "<leader>/", "<cmd>FzfLua live_grep<cr>", desc = "Grep (Root Dir)" },
+      { "<leader>/", "<cmd>FzfLua live_grep_native<cr>", desc = "Grep (Root Dir)" },
       { "<leader>:", "<cmd>FzfLua command_history<cr>", desc = "Command History" },
       { "<leader><space>", "<cmd>FzfLua files<cr>", desc = "Find Files (Root Dir)" },
 
@@ -201,8 +202,8 @@ return {
       { "<leader>sC", "<cmd>FzfLua commands<cr>", desc = "Commands" },
       { "<leader>sd", "<cmd>FzfLua diagnostics_workspace<cr>", desc = "Diagnostics" },
       { "<leader>sD", "<cmd>FzfLua diagnostics_document<cr>", desc = "Buffer Diagnostics" },
-      { "<leader>sg", "<cmd>FzfLua live_grep<cr>", desc = "Grep (Root Dir)" },
-      { "<leader>sG", "<cmd>FzfLua live_grep root=false<cr>", desc = "Grep (cwd)" },
+      { "<leader>sg", "<cmd>FzfLua live_grep_native<cr>", desc = "Grep (Root Dir)" },
+      { "<leader>sG", "<cmd>FzfLua live_grep_native root=false<cr>", desc = "Grep (cwd)" },
       { "<leader>sh", "<cmd>FzfLua help_tags<cr>", desc = "Help Pages" },
       { "<leader>sH", "<cmd>FzfLua highlights<cr>", desc = "Search Highlight Groups" },
       { "<leader>sj", "<cmd>FzfLua jumps<cr>", desc = "Jumplist" },
