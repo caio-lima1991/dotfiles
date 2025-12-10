@@ -15,22 +15,6 @@ return {
         return vim.tbl_get(package.loaded, name) ~= nil
       end
 
-      -- --- Custom function to handle filtering for symbols.
-      -- LazyVim used a custom symbol filter, which is challenging to replicate
-      -- natively without more context. We'll include a placeholder but assume
-      -- no specific LazyVim kind filtering for symbols.
-      local function symbols_filter(entry, ctx)
-        -- The original LazyVim logic:
-        -- if ctx.symbols_filter == nil then
-        --   ctx.symbols_filter = LazyVim.config.get_kind_filter(ctx.bufnr) or false
-        -- end
-        -- if ctx.symbols_filter == false then
-        --   return true
-        -- end
-        -- return vim.tbl_contains(ctx.symbols_filter, entry.kind)
-        return true -- Fallback to no filter for native config
-      end
-
       -- Quickfix keymaps
       config.defaults.keymap.fzf["ctrl-q"] = "select-all+accept"
       config.defaults.keymap.fzf["ctrl-u"] = "half-page-up"
@@ -42,28 +26,14 @@ return {
       config.defaults.keymap.builtin["<c-b>"] = "preview-page-up"
 
       -- Trouble integration (if you have it installed)
-      if has("trouble") then -- Replace LazyVim.has("trouble.nvim")
+      if has("trouble") then
         config.defaults.actions.files["ctrl-t"] = require("trouble.sources.fzf").actions.open
       end
 
-      -- Toggle root dir / cwd (Requires custom pick logic from original config)
-      -- This logic is complex as it relies on LazyVim's internal picker system.
-      -- For a native setup, we'll redefine the actions to call common fzf-lua functions
-      -- but **without** the internal LazyVim picker tracking.
       config.defaults.actions.files["ctrl-r"] = function()
         print("toggle-root-dir (LazyVim custom logic removed)")
-        -- To implement this, you would need a way to track the current call's options,
-        -- which fzf-lua doesn't expose easily without its own wrapper.
-        -- For simplicity, it's safer to use the built-in FzfLua commands for root/cwd.
-        -- e.g., an alternative:
-        -- if vim.uv.cwd() == vim.loop.os_homedir() then
-        --   require("fzf-lua").files({ cwd = vim.uv.cwd() })
-        -- else
-        --   require("fzf-lua").files()
-        -- end
       end
       config.defaults.actions.files["alt-c"] = config.defaults.actions.files["ctrl-r"]
-      -- config.set_action_helpstr is removed as it's not a standard fzf-lua function
 
       -- Image Previewer setup
       local img_previewer
@@ -185,17 +155,13 @@ return {
           end
           return t
         end
+
         -- Manually load the profile and merge the options
         local default_title_profile = require("fzf-lua.profiles.default-title")
         opts = vim.tbl_deep_extend("force", fix(default_title_profile), opts)
         opts[1] = nil -- Remove the profile name after applying
       end
-
       require("fzf-lua").setup(opts)
-
-      -- The LazyVim vim.ui.select override is an advanced feature and is removed
-      -- for a native configuration, unless you manually integrate a similar loading
-      -- logic into your core config (e.g., in `init.lua` or an autocommand).
     end,
     -- 2. Keymaps (Converted from LazyVim format)
     keys = {
@@ -205,19 +171,19 @@ return {
 
       -- Original LazyVim Picker Keymaps: Replaced LazyVim.pick(...)
       { "<leader>,", "<cmd>FzfLua buffers sort_mru=true sort_lastused=true<cr>", desc = "Switch Buffer" },
-      { "<leader>/", "<cmd>FzfLua live_grep<cr>", desc = "Grep (Root Dir)" }, -- Replaces LazyVim.pick("live_grep")
+      { "<leader>/", "<cmd>FzfLua live_grep<cr>", desc = "Grep (Root Dir)" },
       { "<leader>:", "<cmd>FzfLua command_history<cr>", desc = "Command History" },
-      { "<leader><space>", "<cmd>FzfLua files<cr>", desc = "Find Files (Root Dir)" }, -- Replaces LazyVim.pick("files")
+      { "<leader><space>", "<cmd>FzfLua files<cr>", desc = "Find Files (Root Dir)" },
 
       -- find
       { "<leader>fb", "<cmd>FzfLua buffers sort_mru=true sort_lastused=true<cr>", desc = "Buffers" },
       { "<leader>fB", "<cmd>FzfLua buffers<cr>", desc = "Buffers (all)" },
       { "<leader>fc", "<cmd>FzfLua files root=false cwd=~/.config/nvim<cr>", desc = "Find Config File" },
-      { "<leader>ff", "<cmd>FzfLua files<cr>", desc = "Find Files (Root Dir)" }, -- Replaces LazyVim.pick("files")
-      { "<leader>fF", "<cmd>FzfLua files root=false<cr>", desc = "Find Files (cwd)" }, -- Replaces LazyVim.pick("files", { root = false })
+      { "<leader>ff", "<cmd>FzfLua files<cr>", desc = "Find Files (Root Dir)" },
+      { "<leader>fF", "<cmd>FzfLua files root=false<cr>", desc = "Find Files (cwd)" },
       { "<leader>fg", "<cmd>FzfLua git_files<cr>", desc = "Find Files (git-files)" },
       { "<leader>fr", "<cmd>FzfLua oldfiles<cr>", desc = "Recent" },
-      { "<leader>fR", "<cmd>FzfLua oldfiles cwd=" .. vim.uv.cwd() .. "<cr>", desc = "Recent (cwd)" }, -- Replaces LazyVim.pick("oldfiles", { cwd = vim.uv.cwd() })
+      { "<leader>fR", "<cmd>FzfLua oldfiles cwd=" .. vim.uv.cwd() .. "<cr>", desc = "Recent (cwd)" },
 
       -- git
       { "<leader>gc", "<cmd>FzfLua git_commits<CR>", desc = "Commits" },
@@ -235,8 +201,8 @@ return {
       { "<leader>sC", "<cmd>FzfLua commands<cr>", desc = "Commands" },
       { "<leader>sd", "<cmd>FzfLua diagnostics_workspace<cr>", desc = "Diagnostics" },
       { "<leader>sD", "<cmd>FzfLua diagnostics_document<cr>", desc = "Buffer Diagnostics" },
-      { "<leader>sg", "<cmd>FzfLua live_grep<cr>", desc = "Grep (Root Dir)" }, -- Replaces LazyVim.pick("live_grep")
-      { "<leader>sG", "<cmd>FzfLua live_grep root=false<cr>", desc = "Grep (cwd)" }, -- Replaces LazyVim.pick("live_grep", { root = false })
+      { "<leader>sg", "<cmd>FzfLua live_grep<cr>", desc = "Grep (Root Dir)" },
+      { "<leader>sG", "<cmd>FzfLua live_grep root=false<cr>", desc = "Grep (cwd)" },
       { "<leader>sh", "<cmd>FzfLua help_tags<cr>", desc = "Help Pages" },
       { "<leader>sH", "<cmd>FzfLua highlights<cr>", desc = "Search Highlight Groups" },
       { "<leader>sj", "<cmd>FzfLua jumps<cr>", desc = "Jumplist" },
@@ -246,30 +212,24 @@ return {
       { "<leader>sm", "<cmd>FzfLua marks<cr>", desc = "Jump to Mark" },
       { "<leader>sR", "<cmd>FzfLua resume<cr>", desc = "Resume" },
       { "<leader>sq", "<cmd>FzfLua quickfix<cr>", desc = "Quickfix List" },
-      { "<leader>sw", "<cmd>FzfLua grep_cword<cr>", desc = "Word (Root Dir)" }, -- Replaces LazyVim.pick("grep_cword")
-      { "<leader>sW", "<cmd>FzfLua grep_cword root=false<cr>", desc = "Word (cwd)" }, -- Replaces LazyVim.pick("grep_cword", { root = false })
-      { "<leader>sw", "<cmd>FzfLua grep_visual<cr>", mode = "x", desc = "Selection (Root Dir)" }, -- Replaces LazyVim.pick("grep_visual")
-      { "<leader>sW", "<cmd>FzfLua grep_visual root=false<cr>", mode = "x", desc = "Selection (cwd)" }, -- Replaces LazyVim.pick("grep_visual", { root = false })
-      { "<leader>uC", "<cmd>FzfLua colorschemes<cr>", desc = "Colorscheme with Preview" }, -- Replaces LazyVim.pick("colorschemes")
+      { "<leader>sw", "<cmd>FzfLua grep_cword<cr>", desc = "Word (Root Dir)" },
+      { "<leader>sW", "<cmd>FzfLua grep_cword root=false<cr>", desc = "Word (cwd)" },
+      { "<leader>sw", "<cmd>FzfLua grep_visual<cr>", mode = "x", desc = "Selection (Root Dir)" },
+      { "<leader>sW", "<cmd>FzfLua grep_visual root=false<cr>", mode = "x", desc = "Selection (cwd)" },
+      { "<leader>uC", "<cmd>FzfLua colorschemes<cr>", desc = "Colorscheme with Preview" },
 
       -- Symbols
       {
         "<leader>ss",
         function()
-          -- The symbols_filter function defined earlier is still needed here
-          require("fzf-lua").lsp_document_symbols({
-            -- regex_filter = symbols_filter, -- Removed since it needs LazyVim internals
-          })
+          require("fzf-lua").lsp_document_symbols({})
         end,
         desc = "Goto Symbol",
       },
       {
         "<leader>sS",
         function()
-          -- The symbols_filter function defined earlier is still needed here
-          require("fzf-lua").lsp_live_workspace_symbols({
-            -- regex_filter = symbols_filter, -- Removed since it needs LazyVim internals
-          })
+          require("fzf-lua").lsp_live_workspace_symbols({})
         end,
         desc = "Goto Symbol (Workspace)",
       },
@@ -301,8 +261,6 @@ return {
   -- 4. nvim-lspconfig keymaps (Fixed for native lazy.nvim structure)
   {
     "neovim/nvim-lspconfig",
-    -- Assuming your lspconfig setup is separate, we only define keys here.
-    -- If lspconfig is loaded lazily, these keys will load it.
     keys = {
       {
         "gd",
