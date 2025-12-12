@@ -5,6 +5,7 @@ return {
   opts = {
     suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
     auto_save = false,
+    auto_restore = false,
     session_lens = {
       picker = "select",
     },

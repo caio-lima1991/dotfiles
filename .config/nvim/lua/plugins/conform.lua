@@ -20,6 +20,7 @@ return {
         lua = { "stylua" },
         python = { "isort", "black" },
         java = { "google-java-format" },
+        xml = { "xmlformatter" },
       },
       format_on_save = {
         lsp_fallback = true,

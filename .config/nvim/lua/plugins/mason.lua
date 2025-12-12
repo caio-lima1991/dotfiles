@@ -58,10 +58,11 @@ return {
     event = "VeryLazy",
     opts = {
       ensure_installed = {
-        "prettier@3.6.2", -- prettier formatter
-        "stylua@v2.3.1", -- lua formatter
-        "isort@7.0.0", -- python formatter
+        "prettier@3.6.2",
+        "stylua@v2.3.1",
+        "isort@7.0.0",
         "google-java-format@v1.32.0",
+        "xmlformatter@0.2.8",
       },
     },
     dependencies = {
