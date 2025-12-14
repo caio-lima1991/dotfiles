@@ -19,7 +19,16 @@ return {
     "mfussenegger/nvim-dap",
     event = "VeryLazy",
     desc = "Debugging support. Requires language specific adapters to be configured.",
-    dependencies = { "rcarriga/nvim-dap-ui", "nvim-neotest/nvim-nio" },
+
+    dependencies = {
+      "rcarriga/nvim-dap-ui",
+      "nvim-neotest/nvim-nio",
+      {
+        "theHamsta/nvim-dap-virtual-text",
+        opts = {},
+      },
+    },
+
     keys = {
       {
         "<leader>dB",
@@ -140,6 +149,50 @@ return {
         end,
         desc = "Widgets",
       },
+
+      -- VS Code-like Keymaps for Debugging Actions
+      {
+        "<F5>",
+        function()
+          require("dap").continue() -- Continue/Start Debugging
+        end,
+        desc = "DAP: Continue",
+      },
+      {
+        "<F10>",
+        function()
+          require("dap").step_over() -- Step Over
+        end,
+        desc = "DAP: Step Over",
+      },
+      {
+        "<F11>",
+        function()
+          require("dap").step_into() -- Step Into
+        end,
+        desc = "DAP: Step Into",
+      },
+      {
+        "<F12>",
+        function()
+          require("dap").step_out() -- Step Out
+        end,
+        desc = "DAP: Step Out",
+      },
+      {
+        "<F9>",
+        function()
+          require("dap").toggle_breakpoint() -- Toggle Breakpoint
+        end,
+        desc = "DAP: Toggle Breakpoint",
+      },
+      {
+        "<leader>dx", -- Example custom keymap for Terminate
+        function()
+          require("dap").terminate()
+        end,
+        desc = "DAP: Terminate",
+      },
     },
     config = function()
       vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
@@ -147,6 +200,7 @@ return {
       -- Setup dap config by VsCode launch.json file
       local vscode = require("dap.ext.vscode")
       local json = require("plenary.json")
+
       vscode.json_decode = function(str)
         return vim.json.decode(json.json_strip_comments(str))
       end
@@ -228,9 +282,11 @@ return {
     },
   },
   {
-    "theHamsta/nvim-dap-virtual-text",
-    event = "VeryLazy",
-    dependencies = { "mfussenegger/nvim-dap" },
-    opts = {},
+    "jay-babu/mason-nvim-dap.nvim",
+    dependencies = "mason.nvim",
+    cmd = { "DapInstall", "DapUninstall" },
+    opts = {
+      automatic_installation = true,
+    },
   },
 }

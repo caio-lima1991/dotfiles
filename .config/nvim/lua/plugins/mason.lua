@@ -1,19 +1,5 @@
 return {
   {
-    "williamboman/mason.nvim",
-    "mfussenegger/nvim-dap",
-    "jay-babu/mason-nvim-dap.nvim",
-    event = "VeryLazy",
-    dependencies = "mason.nvim",
-    cmd = { "DapInstall", "DapUninstall" },
-    opts = {
-      automatic_installation = true,
-      handlers = {},
-      ensure_installed = {},
-    },
-    config = function() end,
-  },
-  {
     "williamboman/mason-lspconfig.nvim",
     event = "VeryLazy",
     opts = {
@@ -58,11 +44,11 @@ return {
     event = "VeryLazy",
     opts = {
       ensure_installed = {
-        "prettier@3.6.2",
-        "stylua@v2.3.1",
-        "isort@7.0.0",
-        "google-java-format@v1.32.0",
-        "xmlformatter@0.2.8",
+        { "prettier", version = "3.6.2" },
+        { "stylua", version = "v2.3.1" },
+        { "isort", version = "7.0.0" },
+        { "google-java-format", version = "v1.32.0" },
+        { "xmlformatter", version = "0.2.8" },
       },
     },
     dependencies = {
