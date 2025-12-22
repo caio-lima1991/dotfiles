@@ -1,10 +1,10 @@
 [general]
-import = ["campbell.toml"]
+import = ["gruvbox_dark.toml"]
+
 [env]
 TERM = "xterm-256color"
 
 [window]
-opacity = 0.9
 decorations = "Full"
 decorations_theme_variant = "Dark"
 startup_mode = "Maximized"
