@@ -12,8 +12,8 @@ return {
         "pyright@1.1.407",
         "eslint@4.10.0",
         "jdtls@v1.54.0",
-        "angularls@21.5.0",
-        "marksman@2024-12-18",
+        "angularls@21.0.6",
+        "bashls@5.6.0",
       },
       automatic_enable = {
         exclude = {
