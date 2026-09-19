@@ -34,7 +34,7 @@
         tree-sitter
 
         (usql.overrideAttrs (oldAttrs: {
-          tags = [ "most" ];
+          tags = [ "most odbc" ];
         }))
       ];
     };
