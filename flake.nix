@@ -20,6 +20,8 @@
         nodejs_26
         pnpm
         jdk25
+        gcc
+        go
 
         # Busca, Navegação & Arquivos
         ripgrep
@@ -30,7 +32,10 @@
 
         # Ferramentas de Dev & Banco de Dados
         tree-sitter
-        usql
+
+        (usql.overrideAttrs (oldAttrs: {
+          tags = [ "most" ];
+        }))
       ];
     };
   };
