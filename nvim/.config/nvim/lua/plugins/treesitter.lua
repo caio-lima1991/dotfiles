@@ -1,27 +1,35 @@
-vim.pack.add({ "https://github.com/romus204/tree-sitter-manager.nvim" })
+vim.pack.add({ "https://github.com/nvim-treesitter/nvim-treesitter" })
 
-require("tree-sitter-manager").setup({
-	parser_install_dir = vim.fn.stdpath("data") .. "/site",
-	auto_install = true,
-	ensure_installed = {
-		"bash",
-		"http",
-		"diff",
-		"html",
-		"query",
-		"java",
-		"sql",
-		"javadoc",
-		"javascript",
-		"typescript",
-		"http",
-		"graphql",
-	},
-})
+local ts_ok, ts = pcall(require, "nvim-treesitter")
+if not ts_ok then
+	return
+end
+
+local languages = {
+	"bash",
+	"diff",
+	"graphql",
+	"html",
+	"http",
+	"java",
+	"javadoc",
+	"javascript",
+	"query",
+	"sql",
+	"typescript",
+	"lua",
+}
+
+ts.install(languages)
 
 vim.api.nvim_create_autocmd("FileType", {
+	pattern = languages,
 	callback = function()
-		local lang = vim.treesitter.language.get_lang(vim.bo.filetype) or vim.bo.filetype
 		pcall(vim.treesitter.start)
+
+		vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+
+		vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+		vim.wo.foldmethod = "expr"
 	end,
 })
