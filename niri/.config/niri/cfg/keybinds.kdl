@@ -12,7 +12,7 @@ binds {
     Alt+Tab { spawn-sh "noctalia msg window-switcher"; }
 
     // Please choose your own file manager.
-    MOD+E                               hotkey-overlay-title="File Manager: Dolphin" { spawn "dolphin"; }
+    MOD+E                               hotkey-overlay-title="File Manager: Nautilus" { spawn "nautilus"; }
 
     // ─── Audio Controls ───
     XF86AudioRaiseVolume { spawn-sh "noctalia msg volume-up"; }

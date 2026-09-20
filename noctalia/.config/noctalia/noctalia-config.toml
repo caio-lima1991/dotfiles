@@ -139,8 +139,7 @@ shell_mode = "dark"
 source = "builtin"
 
     [theme.templates]
-    builtin_ids = [ "btop", "foot", "gtk3", "gtk4", "niri", "qt" ]
-    community_ids = [ "libreoffice" ]
+    builtin_ids = [ "btop", "foot", "niri" ]
     enable_community_templates = true
 
 [widget.clock]
