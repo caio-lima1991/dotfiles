@@ -10,5 +10,9 @@ layout {
         proportion 0.66667
     }
 
+    focus-ring {
+        width 1
+    }
+
     struts {}
 }
