@@ -129,7 +129,7 @@ settings_show_advanced = true
     transparency_mode = "soft"
 
     [shell.shadow]
-    alpha = 0.79999998211860657
+    alpha = 0.8
 
 [theme]
 builtin = "Ayu"
@@ -137,55 +137,15 @@ community_palette = "Atuel"
 mode = "dark"
 shell_mode = "dark"
 source = "builtin"
-wallpaper_scheme = "m3-rainbow"
 
     [theme.templates]
-    builtin_ids = [
-        "alacritty",
-        "btop",
-        "cava",
-        "emacs",
-        "foot",
-        "gtk3",
-        "gtk4",
-        "ghostty",
-        "helix",
-        "hyprland",
-        "kcolorscheme",
-        "kitty",
-        "labwc",
-        "mango",
-        "niri",
-        "qt",
-        "scroll",
-        "starship",
-        "sway",
-        "umbriel",
-        "wezterm"
-    ]
-    community_ids = [ "libreoffice", "rofi" ]
+    builtin_ids = [ "btop", "foot", "gtk3", "gtk4", "niri", "qt" ]
+    community_ids = [ "libreoffice" ]
     enable_community_templates = true
-
-[wallpaper.default]
-path = "/home/caiols/Imagens/krys-amon-g6TsStgUDPw-unsplash.jpg"
-
-[wallpaper.last]
-path = "/home/caiols/Imagens/krys-amon-g6TsStgUDPw-unsplash.jpg"
-
-[wallpaper.monitors.HDMI-A-1]
-path = "/home/caiols/Imagens/7731877.jpg"
-
-[wallpaper.monitors.eDP-1]
-path = "/home/caiols/Imagens/krys-amon-g6TsStgUDPw-unsplash.jpg"
-
-[[wallpaper.favorite]]
-builtin_palette = "Ayu"
-palette_source = "builtin"
-path = "/home/caiols/Imagens/krys-amon-g6TsStgUDPw-unsplash.jpg"
-theme_mode = "dark"
 
 [widget.clock]
 format = "{:%H:%M}"
 
 [widget.network]
 show_label = false
+
