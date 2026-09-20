@@ -15,10 +15,13 @@ binds {
     MOD+E                               hotkey-overlay-title="File Manager: Dolphin" { spawn "dolphin"; }
 
     // ─── Audio Controls ───
-    XF86AUDIORAISEVOLUME                allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume increase"; }
-    XF86AUDIOLOWERVOLUME                allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume decrease"; }
-    XF86AUDIOMUTE                       allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume muteOutput"; }
-    XF86AUDIOMICMUTE                    allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume muteInput"; }
+    XF86AudioRaiseVolume { spawn-sh "noctalia msg volume-up"; }
+    XF86AudioLowerVolume { spawn-sh "noctalia msg volume-down"; }
+    XF86AudioMute { spawn-sh "noctalia msg volume-mute"; }
+
+    // ─── Brightness Controls ───
+    XF86MonBrightnessUp { spawn-sh "noctalia msg brightness-up"; }
+    XF86MonBrightnessDown { spawn-sh "noctalia msg brightness-down"; }
 
     // ─── Window Movement and Focus ───
     MOD+Q                               { close-window; }

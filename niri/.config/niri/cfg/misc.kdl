@@ -17,3 +17,7 @@ debug {
 hotkey-overlay {
    skip-at-startup
 }
+
+switch-events {
+    lid-close { spawn "noctalia" "msg" "session" "lock-and-suspend"; }
+}
