@@ -172,9 +172,18 @@ source = "community"
     community_ids = []
     enable_community_templates = false
 
+[widget.battery]
+show_label = false
+
+[widget.brightness]
+show_label = false
+
 [widget.clock]
 format = "{:%H:%M}"
 
 [widget.network]
+show_label = false
+
+[widget.volume]
 show_label = false
 
