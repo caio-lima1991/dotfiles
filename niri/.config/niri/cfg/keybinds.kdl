@@ -109,6 +109,7 @@ binds {
     // ─── Modes ───
     MOD+T                               { toggle-window-floating; }
     MOD+F                               { maximize-column; }
+    MOD+M                               { maximize-window-to-edges; }
     MOD+SHIFT+F                         { fullscreen-window; }
     MOD+W                               { toggle-column-tabbed-display; }
 
@@ -123,7 +124,7 @@ binds {
     MOD+ESCAPE                          allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 
     // ─── Exit / Power ───
-    CTRL+ALT+DELETE                     { quit; }
+    CTRL+ALT+DELETE                     { spawn-sh "noctalia msg panel-toggle session"; }
     MOD+SHIFT+P                         { power-off-monitors; }
     MOD+O                               repeat=false { toggle-overview; }
 }

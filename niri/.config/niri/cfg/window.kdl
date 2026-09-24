@@ -1,0 +1,6 @@
+window-rule {
+    match title="Firefox"
+    match title="foot"
+
+    open-maximized true
+}
