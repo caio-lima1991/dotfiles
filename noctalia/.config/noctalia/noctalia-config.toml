@@ -11,10 +11,12 @@ margin_opposite_edge = 0
 padding = 10
 position = "left"
 radius = 0
+radius_bottom_left = 0
+radius_bottom_right = 0
 radius_top_left = 0
 radius_top_right = 0
 shadow = true
-thickness = 39
+thickness = 35
 
 [dock]
 active_monitor_only = false
@@ -147,6 +149,9 @@ enabled = false
 font_family = "CodeNewRoman Nerd Font Mono"
 niri_overview_type_to_launch_enabled = true
 settings_show_advanced = true
+
+    [shell.animation]
+    enabled = false
 
     [shell.launcher]
     pinned = []

@@ -5,5 +5,6 @@ include "./cfg/layout.kdl"
 include "./cfg/rules.kdl"
 include "./cfg/misc.kdl"
 include "./cfg/window.kdl"
+include "./cfg/animation.kdl"
 
 include "noctalia.kdl"
