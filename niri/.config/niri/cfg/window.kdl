@@ -1,6 +1,7 @@
 window-rule {
-    match title="Firefox"
-    match title="foot"
+    match app-id="foot"
+    match app-id="brave-browser"
+    match app-id="brave-origin"
 
     open-maximized true
 }
