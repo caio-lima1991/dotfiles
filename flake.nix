@@ -32,10 +32,6 @@
 
         # Ferramentas de Dev & Banco de Dados
         tree-sitter
-
-        (usql.overrideAttrs (oldAttrs: {
-          tags = [ "most odbc" ];
-        }))
       ];
     };
   };
