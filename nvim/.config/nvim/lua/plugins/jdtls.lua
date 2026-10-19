@@ -46,8 +46,14 @@ GET_JDTLS_CONFIG = function()
 	local m2_repo = vim.fn.expand("~/.m2/repository")
 	local os_name = vim.loop.os_uname().sysname
 
+	local java_cmd = "java"
+	local java_jdtls = vim.env.JAVA_JDTLS and (vim.env.JAVA_JDTLS .. "/bin/java") or nil
+	if java_jdtls and vim.fn.executable(java_jdtls) == 1 then
+		java_cmd = java_jdtls
+	end
+
 	local cmd = {
-		"java",
+		java_cmd,
 
 		"-Declipse.application=org.eclipse.jdt.ls.core.id1",
 		"-Dosgi.bundles.defaultStartLevel=4",
@@ -72,6 +78,21 @@ GET_JDTLS_CONFIG = function()
 		workspace_dir,
 	}
 
+	local runtimes = {}
+
+	if vim.env.JDTLS_RUNTIMES then
+		for pair in vim.env.JDTLS_RUNTIMES:gmatch("[^,]+") do
+			local name, path = pair:match("([^=]+)=([^=]+)")
+			if name and path then
+				table.insert(runtimes, { name = name, path = path })
+			end
+		end
+	else
+		if vim.env.JAVA_HOME then
+			table.insert(runtimes, { name = "JavaSE-1.8", path = vim.env.JAVA_HOME })
+		end
+	end
+
 	local config = {
 		cmd = cmd,
 		root_dir = vim.fs.root(0, { "gradlew", ".git", "mvnw", "pom.xml" }),
@@ -85,15 +106,10 @@ GET_JDTLS_CONFIG = function()
 					settingsFile = m2_repo .. "/settings.xml",
 				},
 				configuration = {
-					runtimes = {
-						{ name = "JavaSE-1.8", path = "~/jdk/jdk8u482-b08" },
-						{ name = "JavaSE-1.7", path = "~/jdk/java-se-7u75-ri" },
-						{ name = "JavaSE-25", path = "~/jdk/jdk-25.0.2+10", default = true },
-					},
+					runtimes = runtimes,
 				},
 			},
 		},
-
 		on_attach = function()
 			jdtls.setup_dap({ hotcodereplace = "auto" })
 		end,
