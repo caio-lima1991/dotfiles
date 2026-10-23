@@ -20,24 +20,16 @@
 (setq split-height-threshold 80)
 (setq split-width-threshold 160)
 
-;; In-Memory Undo Limits & File Backups
+;; In-Memory Undo Limits
 (setq undo-limit 67108864)          ; 64MB undo limit
 (setq undo-strong-limit 100663296)   ; 96MB
 (setq undo-outer-limit 1006632960)  ; 1000MB
-(setq backup-directory-alist `(("." . ,(concat user-emacs-directory "backups"))))
-(setq auto-save-file-name-transforms `((".*" ,(concat user-emacs-directory "auto-save/") t)))
 
 ;; Dialog prompts in minibuffer instead of GUI popups
 (setq use-dialog-box nil)
-(setq confirm-kill-emacs 'y-or-n-p)
 
 ;; Clipboard integration
 (setq select-enable-clipboard t)
-
-;; Isolate auto-generated Custom settings to a separate file
-(setq custom-file (concat user-emacs-directory "custom.el"))
-(when (file-exists-p custom-file)
-  (load custom-file))
 
 ;; Exit immediately without asking for confirmation
 (setq confirm-kill-emacs nil)
@@ -100,6 +92,45 @@
   (define-key eglot-mode-map (kbd "C-c c a") 'eglot-code-actions))
 
 ;; =============================================================================
+;; 5b. TREE-SITTER (Fedora system grammars)
+;; =============================================================================
+;; Fedora ships grammars as `libtree-sitter-<lang>.so.<abi>` in /usr/lib64.
+;; Emacs finds most of them automatically, but a few are named differently and
+;; need an override of the form (LANG LIBRARY-BASE-NAME FUNCTION-NAME).
+
+(when (treesit-available-p)
+  ;; Help Emacs locate Fedora's grammar libraries (versioned sonames live here).
+  (add-to-list 'treesit-extra-load-path "/usr/lib64")
+
+  ;; Fedora names these differently from what Emacs expects internally.
+  (setq treesit-load-name-override-list
+        '((c-sharp "libtree-sitter-c-sharp" "tree_sitter_c_sharp")
+          (php "libtree-sitter-php" "tree_sitter_php")))
+
+  ;; Prefer tree-sitter major modes when the grammar is available; fall back to
+  ;; the classic non-treesit mode otherwise.
+  (dolist (map '((sh-mode . bash-ts-mode)
+                 (c-mode . c-ts-mode)
+                 (cmake-mode . cmake-ts-mode)
+                 (csharp-mode . csharp-ts-mode)
+                 (elixir-mode . elixir-ts-mode)
+                 (go-mode . go-ts-mode)
+                 (html-mode . html-ts-mode)
+                 (java-mode . java-ts-mode)
+                 (js-mode . js-ts-mode)
+                 (json-mode . json-ts-mode)
+                 (lua-mode . lua-ts-mode)
+                 (php-mode . php-ts-mode)
+                 (python-mode . python-ts-mode)
+                 (ruby-mode . ruby-ts-mode)
+                 (rust-mode . rust-ts-mode)
+                 (toml-mode . toml-ts-mode)
+                 (typescript-mode . typescript-ts-mode)
+                 (yaml-mode . yaml-ts-mode)))
+    (when (fboundp (cdr map))
+      (add-to-list 'major-mode-remap-alist map))))
+
+;; =============================================================================
 ;; 6. Magit
 ;; =============================================================================
 
@@ -125,34 +156,7 @@
   (global-undo-fu-session-mode 1))
 
 ;; =============================================================================
-;; 8. STOW ISOLATION & DUST BINS (~/.local/share/emacs/)
-;; =============================================================================
-
-;; Define isolated storage directory under ~/.local/share/emacs/
-(defvar my-emacs-data-dir
-  (expand-file-name "emacs/" (or (getenv "XDG_DATA_HOME") "~/.local/share")))
-
-;; Move custom-file outside Stow
-(setq custom-file (expand-file-name "custom.el" my-emacs-data-dir))
-(when (file-exists-p custom-file)
-  (load custom-file t))
-
-;; Redirect backups, auto-saves, and lockfiles
-(setq backup-directory-alist `(("." . ,(expand-file-name "backups/" my-emacs-data-dir)))
-      auto-save-file-name-transforms `((".*" ,(expand-file-name "auto-save/" my-emacs-data-dir) t))
-      auto-save-list-file-prefix (expand-file-name "auto-save-list/.saves-" my-emacs-data-dir)
-      create-lockfiles nil)
-
-;; Redirect native-compilation (.eln cache) out of Stow
-(when (boundp 'native-comp-eln-load-path)
-  (startup-redirect-eln-cache (expand-file-name "eln-cache/" my-emacs-data-dir)))
-
-;; Redirect built-in caches (url, transient, recentf, undo-fu, etc.)
-(setq url-history-file (expand-file-name "url/history" my-emacs-data-dir)
-      recentf-save-file (expand-file-name "recentf" my-emacs-data-dir))
-
-;; =============================================================================
-;; 9. VIPER MODE (Level 3 - Full Vi Emulation)
+;; 8. VIPER MODE (Level 3 - Full Vi Emulation)
 ;; =============================================================================
 
 (setq viper-mode 3)
@@ -162,3 +166,4 @@
 (require 'viper)
 (viper-mode)
 (setq-default viper-mode 3)
+
