@@ -1,3 +1,4 @@
+
 ;; =============================================================================
 ;; 1. GENERAL OPTIONS & EDITOR BEHAVIOR
 ;; =============================================================================
@@ -34,6 +35,15 @@
 ;; Exit immediately without asking for confirmation
 (setq confirm-kill-emacs nil)
 (setq frame-background-mode 'dark)
+
+;; Project
+(tab-bar-mode 1)
+(setq tab-bar-tab-name-function #'tab-bar-tab-name-current-with-count)
+(setq project-kill-buffers-display-buffer-list t)
+
+;; Title bar
+(modify-all-frames-parameters '((undecorated . t)))
+(add-to-list 'default-frame-alist '(undecorated . t))
 
 ;; =============================================================================
 ;; 2. THEME & UI
@@ -142,28 +152,16 @@
 ;; 7. UNDO MANAGEMENT (Vundo & Persistent Session)
 ;; =============================================================================
 
-;; Visual Undo Tree
 (use-package vundo
   :ensure t
-  :bind ("C-c u" . vundo))
+  :bind ("C-x u" . vundo))
 
-;; Save undo history to disk across restarts
-(use-package undo-fu-session
-  :ensure t
-  :config
-  (setq undo-fu-session-directory (concat user-emacs-directory "undo"))
-  (setq undo-fu-session-incompatible-files '("/COMMIT_EDITMSG\\'" "/git-rebase-todo\\'"))
-  (global-undo-fu-session-mode 1))
+;; Native session & undo persistence
+(setq desktop-path (list user-emacs-directory)
+      desktop-dirname user-emacs-directory
+      desktop-base-filename "emacs.desktop"
+      desktop-base-lock-name "emacs.desktop.lock")
+;; Save buffer undo history across sessions
+(add-to-list 'desktop-globals-to-save 'buffer-undo-list)
 
-;; =============================================================================
-;; 8. VIPER MODE (Level 3 - Full Vi Emulation)
-;; =============================================================================
-
-(setq viper-mode 3)
-(setq viper-expert-level 3)
-(setq viper-inhibit-startup-message t)
-
-(require 'viper)
-(viper-mode)
-(setq-default viper-mode 3)
-
+(desktop-save-mode 1)
