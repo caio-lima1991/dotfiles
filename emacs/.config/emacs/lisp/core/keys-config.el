@@ -16,7 +16,7 @@
 ;; Files and search
 ;; -----------------------------------------------------------------------------
 
-(define-key global-map (kbd "C-x C-f") #'consult-fd)
+(define-key global-map (kbd "C-c f") #'consult-fd)
 (define-key global-map (kbd "C-c g") #'consult-ripgrep)
 (define-key global-map (kbd "C-c b") #'consult-buffer)
 
