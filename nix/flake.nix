@@ -12,16 +12,15 @@
         neovim
         tmux
         w3m
-        posting
         nb
         ripgrep
         fd
         fzf
-        stow
-        gzip
         hurl
-        usql
-        tree-sitter
+
+        # LSP
+        jdt-language-server
+        google-java-format
       ];
     };
 

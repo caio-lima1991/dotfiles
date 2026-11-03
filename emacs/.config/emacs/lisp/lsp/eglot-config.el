@@ -1,18 +1,8 @@
 ;; -*- lexical-binding: t; -*-
 
 ;; =============================================================================
-;; Eglot (native LSP client).
+;; Eglot
 ;; =============================================================================
-
-(defconst my/lsp-dir (expand-file-name "~/.local/bin/lsp/")
-  "Directory holding self-contained language servers.")
-
-(add-to-list 'exec-path my/lsp-dir)
-(add-to-list 'exec-path (expand-file-name "bin" my/lsp-dir))
-(dolist (server-dir (directory-files my/lsp-dir t "^[^.]" t))
-  (let ((bin (expand-file-name "bin" server-dir)))
-    (when (file-directory-p bin)
-      (add-to-list 'exec-path bin))))
 
 ;; -----------------------------------------------------------------------------
 ;; Connection behaviour
@@ -21,17 +11,16 @@
 (setq eglot-sync-connect 1
       eglot-connect-timeout 30
       eglot-autoshutdown t
-      eglot-events-buffer-size 0)      ; no unbounded *EGLOT events* growth
+      eglot-events-buffer-size 0)       ; no unbounded *EGLOT events* growth
 
 ;; -----------------------------------------------------------------------------
 ;; Start Eglot automatically
 ;; -----------------------------------------------------------------------------
 
 (defun my/eglot-ensure-on-programming ()
-  "Start Eglot when a language server is available for this buffer.
-Errors are trapped so that a failure here can never abort the rest of
-`prog-mode-hook' / `text-mode-hook'."
-  (when (and (derived-mode-p 'prog-mode 'text-mode)
+  "Start Eglot when a language server is available for this buffer."
+  (when (and (or (derived-mode-p 'prog-mode 'text-mode)
+                 (derived-mode-p 'lua-ts-mode))
              (not (my/eglot-running-p)))
     (eglot-ensure)))
 
@@ -79,6 +68,5 @@ Any failure is swallowed so that formatting can never prevent a save."
   (define-key eglot-mode-map (kbd "C-c c f") #'eglot-format)
   (define-key eglot-mode-map (kbd "C-c c i") #'eglot-find-implementation)
   (define-key eglot-mode-map (kbd "C-c t f") #'my/toggle-format-on-save))
-
 
 (provide 'eglot-config)

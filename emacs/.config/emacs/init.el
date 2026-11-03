@@ -53,3 +53,4 @@
 (require 'magit-config)
 (require 'vundo-config)
 (require 'undo-config)
+(require 'eat-config)
