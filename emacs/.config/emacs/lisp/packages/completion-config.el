@@ -6,19 +6,15 @@
 
 (use-package corfu
   :ensure t
-  :custom
-  (corfu-cycle t)
-  (corfu-auto t)
-  (corfu-preselect 'prompt)
-  (corfu-quit-no-match 'separator)
+  :demand t
   :init
-  (global-corfu-mode 1)
-  :config
-  (defvar corfu-auto-delay)
-  (defvar corfu-auto-prefix)
-  (with-eval-after-load 'corfu-auto
-    (setq corfu-auto-delay 0.2)
-    (setq corfu-auto-prefix 2)))
+  (setq corfu-cycle t
+        corfu-auto t
+        corfu-auto-delay 0.2
+        corfu-auto-prefix 2
+        corfu-preselect 'prompt
+        corfu-quit-no-match 'separator)
+  (global-corfu-mode 1))
 
 ;; -----------------------------------------------------------------------------
 ;; Candidate documentation in a side popup

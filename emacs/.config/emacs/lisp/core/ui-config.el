@@ -16,7 +16,7 @@
 ;; Theme
 ;; -----------------------------------------------------------------------------
 
-(load-theme 'modus-vivendi t)
+(load-theme 'modus-vivendi-tinted t)
 
 (scroll-bar-mode -1)
 (horizontal-scroll-bar-mode -1)

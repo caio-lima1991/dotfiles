@@ -50,6 +50,7 @@
 (require 'vertico-config)
 (require 'consult-config)
 (require 'completion-config)
+(require 'snippet-config)
 
 (require 'magit-config)
 (require 'vundo-config)
