@@ -59,6 +59,26 @@ Any failure is swallowed so that formatting can never prevent a save."
   (message "Format on save %s" (if my/format-on-save "enabled" "disabled")))
 
 ;; -----------------------------------------------------------------------------
+;; ElDoc — signature and documentation for the symbol at point
+;; -----------------------------------------------------------------------------
+
+(setq eldoc-idle-delay 0.3
+      eldoc-echo-area-use-multiline-p nil)
+
+(with-eval-after-load 'eglot
+  (setq eldoc-documentation-strategy #'eldoc-documentation-compose))
+
+(defun my/eglot-documentation-buffer ()
+  "Show the full LSP documentation of the symbol at point in its own buffer.
+Falls back to a message when the server has nothing to report for the
+current position."
+  (interactive)
+  (let ((doc (eldoc-doc-buffer)))
+    (if (and doc (> (buffer-size doc) 0))
+        (display-buffer doc)
+      (message "No documentation available for the symbol at point"))))
+
+;; -----------------------------------------------------------------------------
 ;; Keybindings (active only in buffers where Eglot is running)
 ;; -----------------------------------------------------------------------------
 
@@ -67,6 +87,7 @@ Any failure is swallowed so that formatting can never prevent a save."
   (define-key eglot-mode-map (kbd "C-c c r") #'eglot-rename)
   (define-key eglot-mode-map (kbd "C-c c f") #'eglot-format)
   (define-key eglot-mode-map (kbd "C-c c i") #'eglot-find-implementation)
+  (define-key eglot-mode-map (kbd "C-c c d") #'my/eglot-documentation-buffer)
   (define-key eglot-mode-map (kbd "C-c t f") #'my/toggle-format-on-save))
 
 (provide 'eglot-config)

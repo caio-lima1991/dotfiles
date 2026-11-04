@@ -49,6 +49,7 @@
 (require 'orderless-config)
 (require 'vertico-config)
 (require 'consult-config)
+(require 'completion-config)
 
 (require 'magit-config)
 (require 'vundo-config)
