@@ -56,3 +56,4 @@
 (require 'vundo-config)
 (require 'undo-config)
 (require 'eat-config)
+(require 'dape-config)

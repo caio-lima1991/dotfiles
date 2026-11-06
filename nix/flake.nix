@@ -21,6 +21,9 @@
         # LSP
         jdt-language-server
         google-java-format
+
+        #Debuggers
+        vscode-extensions.vscjava.vscode-java-debug
       ];
     };
 
