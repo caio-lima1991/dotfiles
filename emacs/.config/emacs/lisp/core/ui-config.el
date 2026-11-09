@@ -16,11 +16,12 @@
 ;; Theme
 ;; -----------------------------------------------------------------------------
 
-(load-theme 'modus-vivendi-tinted t)
+(load-theme 'modus-vivendi-tritanopia t)
 
 (scroll-bar-mode -1)
 (horizontal-scroll-bar-mode -1)
 (tool-bar-mode -1)
+(menu-bar-mode -1)
 
 (modify-all-frames-parameters '((undecorated . t)))
 (add-to-list 'default-frame-alist '(undecorated . t))
