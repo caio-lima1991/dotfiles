@@ -52,6 +52,7 @@
 (require 'completion-config)
 (require 'spell-config)
 (require 'snippet-config)
+(require 'reformat-config)
 
 (require 'magit-config)
 (require 'vundo-config)

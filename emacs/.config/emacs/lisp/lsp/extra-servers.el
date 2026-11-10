@@ -13,16 +13,7 @@ MODES is a list of major-mode symbols; COMMAND is the server command vector."
     (add-to-list 'eglot-server-programs (cons modes command))))
 
 (with-eval-after-load 'eglot
-  (my/register-lsp '(lua-ts-mode)
-                   '("lua-language-server"))
-
   (my/register-lsp '(sql-mode sql-ts-mode)
-                   '("sqls"))
-
-  (my/register-lsp '(nxml-mode xml-mode)
-                   '("lemminx"))
-
-  (my/register-lsp '(angular-mode ng-ts-mode typescript-ts-mode)
-                   '("ngserver" "--stdio" "--tsProbeLocations" "" "--ngProbeLocations" "")))
+                   '("sqls")))
 
 (provide 'extra-servers)

@@ -11,7 +11,7 @@
 (setq eglot-sync-connect 1
       eglot-connect-timeout 30
       eglot-autoshutdown t
-      eglot-events-buffer-size 0)       ; no unbounded *EGLOT events* growth
+      eglot-events-buffer-size 0)
 
 ;; -----------------------------------------------------------------------------
 ;; Start Eglot automatically
@@ -33,30 +33,6 @@
 
 (add-hook 'prog-mode-hook #'my/eglot-ensure-on-programming)
 (add-hook 'text-mode-hook #'my/eglot-ensure-on-programming)
-
-;; -----------------------------------------------------------------------------
-;; Format on save
-;; -----------------------------------------------------------------------------
-
-(defvar my/format-on-save t
-  "When non-nil, format the buffer on save through Eglot.")
-
-(defun my/eglot-format-on-save ()
-  "Format the current buffer before saving, if Eglot supports it.
-Any failure is swallowed so that formatting can never prevent a save."
-  (when my/format-on-save
-    (ignore-errors
-      (when (and (my/eglot-running-p)
-                 (eglot-server-capable :documentFormattingProvider))
-        (eglot-format-buffer)))))
-
-(add-hook 'before-save-hook #'my/eglot-format-on-save)
-
-(defun my/toggle-format-on-save ()
-  "Toggle formatting on save and report the new state."
-  (interactive)
-  (setq my/format-on-save (not my/format-on-save))
-  (message "Format on save %s" (if my/format-on-save "enabled" "disabled")))
 
 ;; -----------------------------------------------------------------------------
 ;; ElDoc — signature and documentation for the symbol at point
