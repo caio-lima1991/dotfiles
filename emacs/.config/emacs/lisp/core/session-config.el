@@ -9,7 +9,7 @@
 (setq desktop-path (list user-emacs-directory)
       desktop-dirname user-emacs-directory
       desktop-base-file-name "emacs-desktop"
-      desktop-restore-eager 5)
+      desktop-restore-eager t)
 
 (desktop-save-mode 1)
 

@@ -31,6 +31,7 @@
 (require 'ui-config)
 (require 'session-config)
 (require 'functions-config)
+(require 'textobjects-config)
 (require 'keys-config)
 
 ;; -----------------------------------------------------------------------------
@@ -53,6 +54,7 @@
 (require 'spell-config)
 (require 'snippet-config)
 (require 'reformat-config)
+(require 'expand-region-config)
 
 (require 'magit-config)
 (require 'vundo-config)

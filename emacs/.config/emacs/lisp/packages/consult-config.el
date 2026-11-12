@@ -13,11 +13,11 @@
         consult-narrow-key "<")
   (setq consult-fd-args
         '((if (executable-find "fdfind" 'remote) "fdfind" "fd")
-          "--full-path" "--hidden" "--color=never"))
+          "--full-path" "--color=never"))
   (setq consult-ripgrep-args
         '("rg" "--null" "--line-buffered" "--color=never" "--max-columns=1000"
           "--path-separator" "/" "--smart-case" "--no-heading" "--with-filename"
-          "--line-number" "--search-zip" "--hidden"))
+          "--line-number" "--search-zip"))
   :config
   (setq xref-show-xrefs-function #'consult-xref
         xref-show-definitions-function #'consult-xref))

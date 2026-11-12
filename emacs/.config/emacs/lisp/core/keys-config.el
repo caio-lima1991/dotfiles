@@ -5,6 +5,7 @@
 ;; =============================================================================
 
 (require 'functions-config)
+(require 'textobjects-config)
 
 (declare-function magit-status "magit" (&optional directory))
 (declare-function vundo "vundo" (&optional arg))
@@ -19,6 +20,35 @@
 (define-key global-map (kbd "C-c f") #'consult-fd)
 (define-key global-map (kbd "C-c g") #'consult-ripgrep)
 (define-key global-map (kbd "C-c b") #'consult-buffer)
+
+;; -----------------------------------------------------------------------------
+;; Text objects (inside / around)
+;; -----------------------------------------------------------------------------
+
+(defvar my/textobject-inside-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "s") #'my/inside-string)
+    (define-key map (kbd "p") #'my/inside-par)
+    (define-key map (kbd "l") #'my/inside-list)
+    (define-key map (kbd "b") #'my/inside-block)
+    (define-key map (kbd "d") #'my/inside-defun)
+    (define-key map (kbd "a") #'my/inside-argument)
+    map)
+  "Mapa de text objects na variante inside (C-c i).")
+
+(defvar my/textobject-around-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "s") #'my/around-string)
+    (define-key map (kbd "p") #'my/around-par)
+    (define-key map (kbd "l") #'my/around-list)
+    (define-key map (kbd "b") #'my/around-block)
+    (define-key map (kbd "d") #'my/around-defun)
+    (define-key map (kbd "a") #'my/around-argument)
+    map)
+  "Mapa de text objects na variante around (C-c a).")
+
+(define-key global-map (kbd "C-c i") my/textobject-inside-map)
+(define-key global-map (kbd "C-c a") my/textobject-around-map)
 
 ;; -----------------------------------------------------------------------------
 ;; Packages

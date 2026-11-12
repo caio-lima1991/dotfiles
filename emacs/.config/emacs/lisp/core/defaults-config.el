@@ -57,15 +57,3 @@
 (setq project-kill-buffers-display-buffer-list t)
 
 (provide 'defaults-config)
-
-;; =============================================================================
-;; VIPER MODE
-;; =============================================================================
-
-(setq viper-mode 3)
-(setq viper-expert-level 3)
-(setq viper-inhibit-startup-message t)
-
-(require 'viper)
-(viper-mode)
-(setq-default viper-mode 3)
