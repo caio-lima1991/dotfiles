@@ -29,7 +29,6 @@
 (require 'defaults-config)
 (require 'editing-config)
 (require 'ui-config)
-(require 'session-config)
 (require 'functions-config)
 (require 'textobjects-config)
 (require 'keys-config)
@@ -57,6 +56,7 @@
 (require 'expand-region-config)
 
 (require 'magit-config)
+(require 'activities-config)
 (require 'vundo-config)
 (require 'undo-config)
 (require 'eat-config)

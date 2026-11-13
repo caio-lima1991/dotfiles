@@ -13,6 +13,7 @@
   (setq-local show-trailing-whitespace nil))
 
 (declare-function eat-char-mode "eat")
+(declare-function eat-project "eat" (&optional arg))
 
 (use-package eat
   :ensure t
@@ -25,7 +26,13 @@
 
   (setq eat-very-visible-cursor-type '(box nil nil)
         eat-very-visible-vertical-bar-cursor-type '(bar nil nil)
-        eat-very-visible-horizontal-bar-cursor-type '(hbar nil nil))
-  )
+        eat-very-visible-horizontal-bar-cursor-type '(hbar nil nil)))
+
+;; -----------------------------------------------------------------------------
+;; Project integration
+;; -----------------------------------------------------------------------------
+
+(with-eval-after-load 'project
+  (define-key project-prefix-map (kbd "t") #'eat-project))
 
 (provide 'eat-config)

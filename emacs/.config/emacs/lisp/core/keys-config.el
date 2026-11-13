@@ -13,6 +13,19 @@
 (declare-function consult-ripgrep "consult" (&optional dir initial))
 (declare-function consult-buffer "consult" (&optional source &rest sources))
 
+(declare-function my/inside-string "textobjects-config" ())
+(declare-function my/around-string "textobjects-config" ())
+(declare-function my/inside-par "textobjects-config" ())
+(declare-function my/around-par "textobjects-config" ())
+(declare-function my/inside-list "textobjects-config" ())
+(declare-function my/around-list "textobjects-config" ())
+(declare-function my/inside-block "textobjects-config" ())
+(declare-function my/around-block "textobjects-config" ())
+(declare-function my/inside-defun "textobjects-config" ())
+(declare-function my/around-defun "textobjects-config" ())
+(declare-function my/inside-argument "textobjects-config" ())
+(declare-function my/around-argument "textobjects-config" ())
+
 ;; -----------------------------------------------------------------------------
 ;; Files and search
 ;; -----------------------------------------------------------------------------

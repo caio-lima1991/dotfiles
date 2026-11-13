@@ -63,7 +63,6 @@ current position."
   (define-key eglot-mode-map (kbd "C-c c r") #'eglot-rename)
   (define-key eglot-mode-map (kbd "C-c c f") #'eglot-format)
   (define-key eglot-mode-map (kbd "C-c c i") #'eglot-find-implementation)
-  (define-key eglot-mode-map (kbd "C-c c d") #'my/eglot-documentation-buffer)
-  (define-key eglot-mode-map (kbd "C-c t f") #'my/toggle-format-on-save))
+  (define-key eglot-mode-map (kbd "C-c c d") #'my/eglot-documentation-buffer))
 
 (provide 'eglot-config)

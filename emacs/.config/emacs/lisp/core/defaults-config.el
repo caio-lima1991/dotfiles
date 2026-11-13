@@ -53,7 +53,12 @@
 ;; -----------------------------------------------------------------------------
 
 (tab-bar-mode 1)
-(setq tab-bar-tab-name-function #'tab-bar-tab-name-current-with-count)
-(setq project-kill-buffers-display-buffer-list t)
+
+(setq project-switch-commands
+      '((project-find-file "Find file" ?f)
+        (project-find-regexp "Find regexp" ?g)
+        (project-dired "Dired" ?D)
+        (eat-project "Eat" ?t)
+        (my/activities-project "Activity" ?a)))
 
 (provide 'defaults-config)

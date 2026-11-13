@@ -8,8 +8,8 @@
 ;; Line numbers & highlights
 ;; -----------------------------------------------------------------------------
 
-(global-display-line-numbers-mode t)
 (setq display-line-numbers-type 'relative)
+(global-display-line-numbers-mode t)
 (global-hl-line-mode t)
 
 ;; -----------------------------------------------------------------------------
