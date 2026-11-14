@@ -30,7 +30,6 @@
 (require 'editing-config)
 (require 'ui-config)
 (require 'functions-config)
-(require 'textobjects-config)
 (require 'keys-config)
 
 ;; -----------------------------------------------------------------------------

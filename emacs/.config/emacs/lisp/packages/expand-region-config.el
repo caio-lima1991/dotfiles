@@ -1,16 +1,22 @@
 ;; -*- lexical-binding: t; -*-
 
 ;; =============================================================================
-;; Expand Region — aumento incremental da região por unidades semânticas.
+;; Expand Region
 ;; =============================================================================
-;; O `C-=' expande a região pelas unidades que o próprio pacote reconhece e o
-;; `C--' contrai. A integração com os text objects treesit é intencionalmente
-;; ausente: cada ferramenta mantém a sua responsabilidade isolada.
 
 (use-package expand-region
   :ensure t
-  :commands (er/expand-region er/contract-region)
-  :bind (("C-=" . er/expand-region)
-         ("C--" . er/contract-region)))
+  :commands (er/expand-region er/contract-region
+             er/mark-inside-pairs er/mark-outside-pairs
+             er/mark-inside-quotes er/mark-outside-quotes
+             er/mark-word er/mark-defun)
+  :bind (("C-="     . er/expand-region)
+         ("C--"     . er/contract-region)
+         ("C-c i p" . er/mark-inside-pairs)
+         ("C-c a p" . er/mark-outside-pairs)
+         ("C-c i q" . er/mark-inside-quotes)
+         ("C-c a q" . er/mark-outside-quotes)
+         ("C-c i w" . er/mark-word)
+         ("C-c i d" . er/mark-defun)))
 
 (provide 'expand-region-config)
