@@ -5,6 +5,7 @@
 ;; -----------------------------------------------------------------------------
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+(setq inhibit-startup-screen t)
 
 (dolist (dir '("lisp/core" "lisp/lsp" "lisp/packages"))
   (add-to-list 'load-path (expand-file-name dir user-emacs-directory) t))
