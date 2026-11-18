@@ -56,7 +56,6 @@
 (require 'expand-region-config)
 
 (require 'magit-config)
-(require 'activities-config)
 (require 'vundo-config)
 (require 'undo-config)
 (require 'eat-config)

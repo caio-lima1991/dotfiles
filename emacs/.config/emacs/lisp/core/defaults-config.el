@@ -53,12 +53,16 @@
 ;; -----------------------------------------------------------------------------
 
 (tab-bar-mode 1)
+(desktop-save-mode 1)
+(setq desktop-restore-frames t)
+(setq desktop-restore-in-current-display t)
+(setq desktop-save t)
 
 (setq project-switch-commands
-      '((project-find-file "Find file" ?f)
-        (project-find-regexp "Find regexp" ?g)
-        (project-dired "Dired" ?D)
-        (eat-project "Eat" ?t)
-        (my/activities-project "Activity" ?a)))
+        '((project-find-file "Find file" ?f)
+          (project-find-regexp "Find regexp" ?g)
+          (project-find-dir "Find directory" ?d)
+          (project-vc-dir "VC-Dir" ?v)
+          (eat-project "Eat terminal" ?e)))
 
 (provide 'defaults-config)
