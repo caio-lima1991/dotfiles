@@ -60,3 +60,4 @@
 (require 'undo-config)
 (require 'eat-config)
 (require 'dape-config)
+(require 'org-config)

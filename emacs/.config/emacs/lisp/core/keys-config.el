@@ -27,4 +27,12 @@
 (define-key global-map (kbd "C-x g") #'magit-status)
 (define-key global-map (kbd "C-x u") #'vundo)
 
+;; -----------------------------------------------------------------------------
+;; Org
+;; -----------------------------------------------------------------------------
+
+(define-key global-map (kbd "C-c c") #'org-capture)
+(define-key global-map (kbd "C-c a") #'org-agenda)
+(define-key global-map (kbd "C-c r") #'org-refile)
+
 (provide 'keys-config)

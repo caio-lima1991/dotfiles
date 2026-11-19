@@ -13,9 +13,9 @@
   :bind (("C-="     . er/expand-region)
          ("C--"     . er/contract-region)
          ("C-c i p" . er/mark-inside-pairs)
-         ("C-c a p" . er/mark-outside-pairs)
+         ("C-c x p" . er/mark-outside-pairs)
          ("C-c i q" . er/mark-inside-quotes)
-         ("C-c a q" . er/mark-outside-quotes)
+         ("C-c x q" . er/mark-outside-quotes)
          ("C-c i w" . er/mark-word)
          ("C-c i d" . er/mark-defun)))
 
