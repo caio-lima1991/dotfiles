@@ -62,7 +62,7 @@
         '((project-find-file "Find file" ?f)
           (project-find-regexp "Find regexp" ?g)
           (project-find-dir "Find directory" ?d)
-          (project-vc-dir "VC-Dir" ?v)
+          (magit-project-status "Magit status" ?v)
           (eat-project "Eat terminal" ?e)))
 
 (provide 'defaults-config)

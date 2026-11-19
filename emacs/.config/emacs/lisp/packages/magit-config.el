@@ -7,6 +7,6 @@
 
 (use-package magit
   :ensure t
-  :commands (magit-status magit-dispatch))
+  :commands (magit-status magit-dispatch magit-project-status))
 
 (provide 'magit-config)
