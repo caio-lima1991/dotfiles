@@ -2,7 +2,7 @@ binds {
     MOD+SHIFT+ESCAPE                     { show-hotkey-overlay; }
 
     // ─── Applications ───
-    MOD+RETURN                          hotkey-overlay-title="Open Terminal: Foot" { spawn "foot"; }
+    MOD+RETURN                          hotkey-overlay-title="Open Emacs: Emacs" { spawn "emacs"; }
     MOD+SPACE                           hotkey-overlay-title="Open App Launcher: noctalia launcher" { spawn-sh "noctalia msg panel-toggle launcher"; }
     MOD+B                               hotkey-overlay-title="Open Browser: Brave" { spawn "brave-origin"; }
     MOD+ALT+L                           hotkey-overlay-title="Lock Screen: noctalia lock" { spawn-sh "noctalia msg lock"; }

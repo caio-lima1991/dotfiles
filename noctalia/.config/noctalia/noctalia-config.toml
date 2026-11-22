@@ -2,32 +2,35 @@
 enabled = true
 
 [bar.default]
-background_opacity = 0.79999998211860657
+background_opacity = 0.74999998323619366
+center = []
 concave_edge_corners = false
 contact_shadow = true
-margin_edge = 0
-margin_ends = 0
+end = [ "media", "spacer_3", "tray", "notifications", "clipboard", "control-center", "spacer_2", "clock" ]
+margin_edge = 5
+margin_ends = "10%"
 margin_opposite_edge = 0
-padding = 10
+padding = 20
 position = "left"
 radius = 0
-radius_bottom_left = 0
-radius_bottom_right = 0
-radius_top_left = 0
-radius_top_right = 0
+radius_bottom_left = 10
+radius_bottom_right = 10
+radius_top_left = 10
+radius_top_right = 10
 shadow = true
-thickness = 35
+start = [ "launcher", "workspaces" ]
+thickness = 28
 
 [dock]
 active_monitor_only = false
-auto_hide = false
+auto_hide = true
 background_opacity = 0.79999998211860657
 enabled = false
 icon_size = 29
-pinned = []
-position = "right"
+pinned = [ "brave-origin", "org.gnome.Music" ]
+position = "bottom"
 reserve_space = false
-smart_auto_hide = true
+smart_auto_hide = false
 
 [idle]
 behavior_order = [ "lock", "screen-off", "lock-and-suspend" ]
@@ -54,26 +57,26 @@ auto_locate = true
 [lockscreen_widgets]
 enabled = true
 schema_version = 2
-widget_order = [ "lockscreen-login-box@HDMI-A-1", "lockscreen-login-box@eDP-1" ]
+widget_order = [ "lockscreen-login-box@DP-3", "lockscreen-login-box@HDMI-A-1", "lockscreen-login-box@eDP-1" ]
 
     [lockscreen_widgets.grid]
     cell_size = 16
     major_interval = 4
     visible = true
 
-    [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1"]
+    [lockscreen_widgets.widget."lockscreen-login-box@DP-3"]
     box_height = 196.0
-    box_width = 720.0
-    cx = 1706.666748046875
-    cy = 1440.0
-    output = "HDMI-A-1"
+    box_width = 810.0
+    cx = 1280.0
+    cy = 1258.0
+    output = "DP-3"
     placement_height = 1440.0
     placement_width = 2560.0
     rotation = 0.0
     type = "login_box"
 
-        [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1".settings]
-        background_color = "surface_variant"
+        [lockscreen_widgets.widget."lockscreen-login-box@DP-3".settings]
+        background_color = "surface_container"
         background_opacity = 0.88
         background_radius = 12.0
         center_password_text = false
@@ -84,6 +87,37 @@ widget_order = [ "lockscreen-login-box@HDMI-A-1", "lockscreen-login-box@eDP-1" ]
         show_keyboard_layout = true
         show_login_button = true
         show_media = true
+        show_media_controls = true
+        show_password_reveal = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1"]
+    box_height = 196.0
+    box_width = 720.0
+    cx = 2488.0
+    cy = 122.0
+    output = "HDMI-A-1"
+    placement_height = 1620.0
+    placement_width = 2880.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1".settings]
+        background_color = "surface_container"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_media_controls = true
+        show_password_reveal = true
         show_session_buttons = true
         show_unlock_hint = true
         show_weather = true
@@ -100,7 +134,7 @@ widget_order = [ "lockscreen-login-box@HDMI-A-1", "lockscreen-login-box@eDP-1" ]
     type = "login_box"
 
         [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
-        background_color = "surface_variant"
+        background_color = "surface_container"
         background_opacity = 0.88
         background_radius = 12.0
         center_password_text = false
@@ -111,6 +145,8 @@ widget_order = [ "lockscreen-login-box@HDMI-A-1", "lockscreen-login-box@eDP-1" ]
         show_keyboard_layout = true
         show_login_button = true
         show_media = true
+        show_media_controls = true
+        show_password_reveal = true
         show_session_buttons = true
         show_unlock_hint = true
         show_weather = true
@@ -130,8 +166,10 @@ settings_show_advanced = true
 
     [shell.panel]
     control_center_position = "top_right"
-    launcher_position = "top_left"
+    launcher_placement = "attached"
+    launcher_position = "auto"
     open_near_click_control_center = true
+    open_near_click_launcher = true
     transparency_mode = "soft"
 
     [shell.shadow]
@@ -142,25 +180,57 @@ builtin = "Oxocarbon"
 community_palette = "Oxocarbon"
 mode = "dark"
 shell_mode = "dark"
-source = "community"
+source = "wallpaper"
 
     [theme.templates]
-    builtin_ids = [ "btop", "foot", "niri" ]
+    builtin_ids = [ "niri" ]
     community_ids = []
     enable_community_templates = false
 
 [widget.battery]
+enabled = false
 show_label = false
 
+[widget.bluetooth]
+enabled = false
+
 [widget.brightness]
+enabled = false
 show_label = false
 
 [widget.clock]
-format = "{:%H:%M}"
+format = "{:%d de %b %H:%M}"
+vertical_format = "{:%H}\\n{:%M}"
+
+[widget.control-center]
+glyph = "adjustments"
+
+[widget.launcher]
+glyph = "brand-redhat"
 
 [widget.network]
+enabled = false
 show_label = false
+
+[widget.session]
+enabled = false
+
+[widget.spacer_2]
+type = "spacer"
+
+[widget.spacer_3]
+type = "spacer"
 
 [widget.volume]
+enabled = false
 show_label = false
 
+[widget.wallpaper]
+enabled = false
+
+[widget.workspaces]
+change_color_on_hover = false
+hide_when_empty = true
+pill_scale = 0.59999999999999998
+show_icons = false
+show_labels = false
